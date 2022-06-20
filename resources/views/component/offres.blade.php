@@ -3,9 +3,11 @@
         <h4>Offres compatibles.</h4>
     </div>
 
+   
     <div class="card-body">
-        @foreach($offre_cs as $offre_c) 
+    @foreach($offre_cs as $offre_c) 
         <div class="card my-3">
+       
             <table class="table">
                 <tbody>
                     <!-- @if(isset($offre_c->image))
@@ -77,9 +79,8 @@
                     </div>
                 </div>
             </div>
-
+            @endforeach
         </div>
-        @endforeach
     </div>
 </div>
 

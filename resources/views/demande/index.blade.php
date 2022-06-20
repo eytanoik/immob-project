@@ -33,7 +33,7 @@
                         <label for="type">Type de bien</label>
                         <select name="type" id="type" class="form-control" >
                             <option value="Location">Location</option>
-                            <option value="Achat">Achat</option>
+                            <option value="Vente">Achat</option>
                         </select>
                     </div>
 
