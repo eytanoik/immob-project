@@ -13,6 +13,5 @@ $factory->define(Demande::class, function (Faker $faker) {
         'surface_max'=>$faker->numberBetween($min = 1, $max = 1000),
         'price_min'=>$faker->numberBetween($min = 1, $max = 999999),
         'price_max'=>$faker->numberBetween($min = 1, $max = 999999),
-        'user_id'=>$faker->numberBetween($min = 1, $max = 50),
     ];
 });

@@ -19,7 +19,8 @@ class CreateOffres extends Migration
             $table->string('adresse');
             $table->string('image');
             $table->bigInteger('surface');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->float('price');
             $table->timestamps();
         });

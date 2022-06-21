@@ -21,7 +21,8 @@ class CreateDemandes extends Migration
             $table->mediumInteger('surface_max');
             $table->float('price_min');
             $table->float('price_max');
-            $table->integer('user_id');          
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');        
             $table->timestamps();
         });
     }

@@ -11,7 +11,6 @@ $factory->define(Offre::class, function (Faker $faker) {
         'adresse'=>$faker->address,
         'image'=>$faker->imageUrl($width = 50, $height = 30),
         'surface'=>$faker->numberBetween($min = 1, $max = 1000),
-        'price'=>$faker->numberBetween($min = 1, $max = 999999),
-        'user_id'=>$faker->numberBetween($min = 1, $max = 50),
+        'price'=>$faker->numberBetween($min = 1, $max = 999999),   
     ];
 });
