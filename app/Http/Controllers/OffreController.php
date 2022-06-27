@@ -22,11 +22,16 @@ class OffreController extends Controller
 
     public function store(CreateOffresRequest $request)
     {
-        if ($request->image == null) {
-            $image = "";
-        }else{
-            $image = $request->image->store('offres');
-        }
+    
+        if($request->hasFile('image'))
+        {
+            $destination_path = 'public/images/offres';
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('image')->storeAs($destination_path, $image_name);
+            } else {
+                $image = '';
+            }
        
         Offre::create([
             'type'=>$request->type,
@@ -50,6 +55,13 @@ class OffreController extends Controller
         session()->flash('success', 'Votre mail a bien ete envoye.');
 
         return redirect('/');
+    }
+
+    public function compatibles(Offre $offre_c)
+    {
+        $offre_c = $offre_c;
+
+        return view('offre.compatibles', ['offre_c'=>$offre_c]);
     }
 
    

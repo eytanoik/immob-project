@@ -50,14 +50,14 @@ class DemandeController extends Controller
         return redirect('/immob');
     }
 
-    public function show(Demande $demande){
-        
-          $offre_c[] = Offre::where('type', $demande->type)
-            ->where('adresse', $demande->adresse)
-            ->whereBetween('surface', [$demande->surface_min,$demande->surface_max])
-            ->whereBetween('price', [$demande->price_min,$demande->price_max])
-            ->get()->all();
+    public function show(Demande $demande)
+    {
+        $offre_c[] = Offre::where('type', $demande->type)
+        ->where('adresse', $demande->adresse)
+        ->whereBetween('surface', [$demande->surface_min,$demande->surface_max])
+        ->whereBetween('price', [$demande->price_min,$demande->price_max])
+        ->get()->all();
 
-            return view('immob',['offre_cs'=>$offre_c[0]])->with('demandes', Demande::all());
+        return view('immob',['offre_cs'=>$offre_c[0]])->with('demande', $demande);
     }
 }

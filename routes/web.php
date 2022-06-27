@@ -29,5 +29,9 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/sendmail/{offre_c}', 'OffreController@sendmail')->name('sendmail');
 
+    Route::get('/compatibles/{offre_c}', 'OffreController@compatibles')->name('compatibles');
+
+    Route::post('/count/{offre_c}', 'OffreCountController@count')->name('count');
 });
+
 

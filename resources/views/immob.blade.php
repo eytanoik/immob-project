@@ -6,18 +6,16 @@
     <div class="row justify-content-center">
         @if(isset($offre_cs))
             <div class="col-md-7"> 
-                <div class="card">
-                    <div class="card-header">
-                    <h3>Demandes existantes.</h3>
-                    </div> 
+               
+                <div class="card-header">
+                <h3>Demandes existantes</h3>
+                </div> 
 
-                    <div class="card-body"> 
-                    @foreach($demandes as $demande)   
-                    @component('component.demandes', ['demande'=> $demande])
-                    @endcomponent
-                    @endforeach
-                    </div>
+                <div class="card-body">   
+                @component('component.demandes', ['demande'=> $demande])
+                @endcomponent
                 </div>
+                
             </div>
                 
             <div class="col-md-5">   
@@ -27,18 +25,18 @@
         @else
         
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                <h3>Demandes existantes.</h3>
-                </div>
-            
-                <div class="card-body"> 
-                @foreach($demandes as $demande)   
-                @component('component.demandes', ['demande'=> $demande])
-                @endcomponent
-                @endforeach
-                </div>
+           
+            <div class="card-header">
+            <h3>Demandes existantes</h3>
             </div>
+        
+            <div class="card-body"> 
+            @foreach($demandes as $demande)   
+            @component('component.demandes', ['demande'=> $demande])
+            @endcomponent
+            @endforeach
+            </div>
+
         </div>
         @endif
     </div> 

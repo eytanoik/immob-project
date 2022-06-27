@@ -1,6 +1,6 @@
-<div class="card my-4">
-    <card-header class="shadow-sm" style="font-size:16px">
-        <div class="m-2"><strong>Demande numero: {{$demande->id}}</strong></div>
+<div class="card my-3">
+    <card-header class="shadow-sm">
+    <div class="text-primary fw-bold m-1">{{$demande->user->name}}</div>
     </card-header>
     <card-body>    
         <table class="table">
@@ -57,9 +57,9 @@
             </tbody>   
         </table>
 
-        <div class="ml-2 mb-2">
-            <a href="{{route('demande.edit', $demande->id)}}" class="btn btn-sm btn-secondary">Modifier</a>    
-            <a href="{{route('demande.show', $demande->id)}}" class="btn btn-sm btn-primary">Recherche des offres compatibles</a>
+        <div class="d-flex justify-content-center mb-1">
+            <a href="{{route('demande.show', $demande->id)}}" class="btn btn-sm btn-primary m-1">Recherche des offres compatibles</a>
+            <a href="{{route('demande.edit', $demande->id)}}" class="btn btn-sm btn-secondary m-1">Modifier</a>    
         </div>
     </card-body>   
 
