@@ -10,32 +10,35 @@
             </card-header>
 
             <div class="card-body d-flex">
-                <div class="text-center">
-                    image
-                    <!-- <img src="{{$offre_c->image}}" alt="" style="width:200px"> -->
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{{asset('storage/'.$offre_c->image)}}" style="width:160px" alt="" />
+                    </div>
+
+                    <div class="col-8">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="font-size: 14px">
+                                    Adresse:
+                                    </th>
+
+                                    <th style="font-size: 14px">
+                                        Prix: 
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td style="font-size: 12px">{{$offre_c->adresse}}</td>
+                                
+                                    <td style="font-size: 12px">{{$offre_c->price}}$</td>
+                                </tr>    
+                            </tbody>   
+                        </table>
+                    </div>
                 </div>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th style="font-size: 14px">
-                            Adresse:
-                            </th>
-
-                            <th style="font-size: 14px">
-                                Prix: 
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td style="font-size: 12px">{{$offre_c->adresse}}</td>
-                        
-                            <td style="font-size: 12px">{{$offre_c->price}}$</td>
-                        </tr>    
-                    </tbody>   
-                </table>
             </div>
                     
             <div class="d-flex justify-content-end m-1">

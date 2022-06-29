@@ -4,17 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Offre extends Model
+class OffreClick extends Model
 {
     protected $guarded = [];
+
+    protected $table = 'offreclicks';
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function offreclicks()
+    public function offre()
     {
-        return $this->hasMany(OffreClick::class);
+        return $this->belongsTo(Offre::class);
     }
 }

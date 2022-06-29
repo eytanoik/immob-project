@@ -7,10 +7,12 @@ use App\Http\Requests\CreateOffresRequest;
 use App\Offre;
 use App\Demande;
 use App\User;
+use App\OffreClick;
 use Illuminate\Support\Facades\Storage;
 use Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
+use Carbon\Carbon;
 
 
 class OffreController extends Controller
@@ -25,10 +27,7 @@ class OffreController extends Controller
     
         if($request->hasFile('image'))
         {
-            $destination_path = 'public/images/offres';
-            $image = $request->file('image');
-            $image_name = $image->getClientOriginalName();
-            $path = $request->file('image')->storeAs($destination_path, $image_name);
+            $image = $request->image->store('offre');
             } else {
                 $image = '';
             }
@@ -41,7 +40,7 @@ class OffreController extends Controller
             'price'=>$request->price,
             'user_id'=>Auth::id(),
         ]);
-
+        
 
         session()->flash('success', 'Votre offre a bien ete enregistree.');
 
@@ -61,7 +60,25 @@ class OffreController extends Controller
     {
         $offre_c = $offre_c;
 
-        return view('offre.compatibles', ['offre_c'=>$offre_c]);
+        $time = Carbon::now()->add('-1', 'day')->toDateTimeString();
+
+        $offre_click = OffreClick::where([
+            'user_id'=> Auth::user()->id, 
+            'offre_id'=>$offre_c->id,
+        ])->whereDate('created_at', '>', $time)->first();
+
+        if(isset($offre_click)){
+            $offre_click->update(['count'=> $offre_click->count +1]);
+        }else{
+            OffreClick::create([
+                    'user_id'=> Auth::user()->id, 
+                    'offre_id'=>$offre_c->id,
+                    'count'=> 1,
+                ]);
+        };
+
+      
+        return view('offre.compatibles', ['offre_c'=> $offre_c])->with('offreclicks', OffreClick::all());
     }
 
    

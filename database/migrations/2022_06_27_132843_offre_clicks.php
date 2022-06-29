@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class OffreDemande extends Migration
+class OffreClicks extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class OffreDemande extends Migration
      */
     public function up()
     {
-        Schema::create('offre_demande', function (Blueprint $table) {
+        Schema::create('offreclicks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('count');
             $table->integer('offre_id');
-            $table->integer('demande_id');
+            $table->integer('user_id'); 
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class OffreDemande extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offre_demande');
+      Schema::dropIfExists('offreclicks');
     }
 }

@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany(Offre::class);
     }
 
+    public function offreclicks()
+    {
+        return $this->hasMany(OffreClick::class);
+    }
+
     public function demandes()
     {
         return $this->hasMany(Demande::class);

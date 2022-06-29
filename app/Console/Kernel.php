@@ -24,9 +24,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('send:mailRappel')
+        ->daily();
+ 
     }
+    
 
     /**
      * Register the commands for the application.

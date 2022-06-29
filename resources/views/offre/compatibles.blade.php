@@ -8,11 +8,11 @@
                 <div class="text-warning fw-bold m-1">{{$offre_c->user->name}}</div>
             </card-header>
 
-            <!-- @if(isset($offre_c->image))
-                   <div>
-                            <img src="{{asset('public/images/offres'.$offre_c->image)}}" alt="">
+            @if(isset($offre_c->image))
+                   <div class="my-3 d-flex justify-content-center">
+                            <img src="{{asset('storage/'.$offre_c->image)}}" style="width:90%" alt="">
                     </div>
-            @endif -->
+            @endif
        
             <table class="table">
                 <tbody>
