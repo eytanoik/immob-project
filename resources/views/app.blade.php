@@ -18,9 +18,10 @@
 
 
     @yield('css')
+
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="bg-light">
         <nav class="navbar navbar-expand-md navbar-light bg-gradient shadow">
         <div class="container ">
             <a class="navbar-brand text-primary" style="font-size: 40px" href="/immob">

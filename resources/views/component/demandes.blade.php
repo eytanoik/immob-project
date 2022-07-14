@@ -1,6 +1,11 @@
-<div class="card my-3">
+<div class="card-header text-warning">
+        <h3>Demandes compatibles</h3>
+    </div>
+
+@foreach($demande_cs as $demande_c) 
+<div class="card my-3 shadow border-0">
     <card-header class="shadow-sm">
-    <div class="text-primary fw-bold m-1">{{$demande->user->name}}</div>
+    <div class="text-warning fw-bold m-1">{{$demande_c->user->name}}</div>
     </card-header>
     <card-body>    
         <table class="table">
@@ -11,7 +16,7 @@
                     Type de bien:
                     </th>
 
-                    <td>{{$demande->type }}</td>
+                    <td>{{$demande_c->type }}</td>
                 </tr>
 
                 <tr>
@@ -19,7 +24,7 @@
                     Adresse: 
                     </th>
 
-                    <td>{{$demande->adresse }}</td>
+                    <td>{{$demande_c->adresse }}</td>
                 </tr>
 
                 <tr>
@@ -27,7 +32,7 @@
                     Surface Minimum: 
                     </th>
 
-                    <td>{{$demande->surface_min }}m2</td>
+                    <td>{{$demande_c->surface_min }}m2</td>
                 </tr>
 
                 <tr>
@@ -35,7 +40,7 @@
                     Surface Maximum: 
                     </th>
 
-                    <td>{{$demande->surface_max }}m2</td>
+                    <td>{{$demande_c->surface_max }}m2</td>
                 </tr>
 
                 <tr>
@@ -43,7 +48,7 @@
                     Price Minimum: 
                     </th>
 
-                    <td>{{$demande->price_min }}$</td>
+                    <td>{{$demande_c->price_min }}$</td>
                 </tr>
 
                 <tr>
@@ -51,17 +56,28 @@
                     Price Maximum:
                     </th>
 
-                    <td> {{$demande->price_max }}$</td>
+                    <td> {{$demande_c->price_max }}$</td>
                 </tr>
 
             </tbody>   
         </table>
-
-        <div class="d-flex justify-content-center mb-1">
-            <a href="{{route('demande.show', $demande->id)}}" class="btn btn-sm btn-primary m-1">Recherche des offres compatibles</a>
-            <a href="{{route('demande.edit', $demande->id)}}" class="btn btn-sm btn-secondary m-1">Modifier</a>    
-        </div>
     </card-body>   
 
+    <div class="d-flex justify-content-end mb-1">
+        <a href="" class="btn btn-sm btn-warning text-white m-1">Accepter la demande</a>
+    </div>
+
 </div>
+@endforeach
  
+<!-- @section('scripts')
+<script>
+    function accept(that){
+
+        $('div').click(function() {
+  var theId = $(this).attr('id');
+  alert(theId);
+});
+    }
+</script>
+@endsection  -->

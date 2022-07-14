@@ -27,9 +27,9 @@ Route::middleware(['auth'])->group(function(){
 
     Route::resource('/demande', 'DemandeController');
 
-    Route::get('/sendmail/{offre_c}', 'OffreController@sendmail')->name('sendmail');
+    Route::get('/sendmail/{offre}', 'OffreController@sendmail')->name('sendmail');
 
-    Route::get('/compatibles/{offre_c}', 'OffreController@compatibles')->name('compatibles');
+    Route::get('/info/{offre}', 'OffreController@info')->name('info');
 
 });
 

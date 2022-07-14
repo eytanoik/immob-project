@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Demande;
 use App\Offre;
 use App\Http\Requests\CreateDemandesRequest;
-use App\Http\Requests\UpdateDemandesRequest;
 use Auth;
 
 
@@ -34,30 +33,4 @@ class DemandeController extends Controller
         return redirect('/immob')->with('demandes', Demande::all());
     }
 
-    public function edit(Demande $demande)
-    {
-        return view('demande.index')->with('demande', $demande);
-    }
-
-    public function update(UpdateDemandesRequest $request, Demande $demande)
-    {
-        $data = $request->only(['type', 'adresse', 'surface_min', 'surface_max', 'price_min', 'price_max',]);
-
-        $demande->update($data);
-
-        session()->flash('success', 'Votre demande a bien ete modifiee.');
-
-        return redirect('/immob');
-    }
-
-    public function show(Demande $demande)
-    {
-        $offre_c[] = Offre::where('type', $demande->type)
-        ->where('adresse', $demande->adresse)
-        ->whereBetween('surface', [$demande->surface_min,$demande->surface_max])
-        ->whereBetween('price', [$demande->price_min,$demande->price_max])
-        ->get()->all();
-
-        return view('immob',['offre_cs'=>$offre_c[0]])->with('demande', $demande);
-    }
 }

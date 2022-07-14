@@ -3,14 +3,14 @@
 @section('content')
 <div class="container my-2 d-flex justify-content-center">
     <div class="col-md-8 ">
-        <div class="card my-3">
+        <div class="card my-3 shadow border-0">
             <card-header class="shadow-sm">
-                <div class="text-warning fw-bold m-1">{{$offre_c->user->name}}</div>
+                <div class="text-primary fw-bold m-1">{{$offre->user->name}}</div>
             </card-header>
 
-            @if(isset($offre_c->image))
+            @if(isset($offre->image))
                    <div class="my-3 d-flex justify-content-center">
-                            <img src="{{asset('storage/'.$offre_c->image)}}" style="width:90%" alt="">
+                            <img src="{{asset('storage/'.$offre->image)}}" style="width:90%" alt="">
                     </div>
             @endif
        
@@ -21,7 +21,7 @@
                         Type de bien:
                         </th>
 
-                        <td>{{$offre_c->type }}</td>
+                        <td>{{$offre->type }}</td>
                     </tr>
 
                     <tr>
@@ -29,7 +29,7 @@
                         Adresse: 
                         </th>
 
-                        <td>{{$offre_c->adresse }}</td>
+                        <td>{{$offre->adresse }}</td>
                     </tr>
 
                     <tr>
@@ -37,7 +37,7 @@
                         Surface: 
                         </th>
 
-                        <td>{{$offre_c->surface }}m2</td>
+                        <td>{{$offre->surface }}m2</td>
                     </tr>
 
                     <tr>
@@ -45,13 +45,14 @@
                         Prix: 
                         </th>
 
-                        <td>{{$offre_c->price}}$</td>
+                        <td>{{$offre->price}}$</td>
                     </tr>    
                 </tbody>   
             </table>
             
             <div class="mr-2 mb-2 d-flex justify-content-end">
-                <button onclick="sendMail()" class="btn btn-sm btn-warning text-white m-1">Contacter l'utilisateur</button>
+                <a href="{{route('offre.show', $offre->id)}}" class="btn btn-sm btn-primary text-white m-1">Recherche des demandes compatibles</a>
+                <button onclick="sendMail()" class="btn btn-sm btn-secondary text-white m-1">Contacter l'utilisateur</button>
             </div>
         </div>
             
@@ -69,8 +70,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a type="button" class="btn btn-secondary text-white" data-dismiss="modal">Non, continuer de voir les offres</a>
-                        <a href="{{route('sendmail', $offre_c->id)}}" type="submit" class="btn btn-warning text-white">Envoyer</a>
+                        <a type="button" class="btn btn-secondary text-white" data-dismiss="modal">Non</a>
+                        <a href="{{route('sendmail', $offre->id)}}" type="submit" class="btn btn-primary text-white">Envoyer</a>
                     </div>
                     
                 </div>

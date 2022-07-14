@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateOffresRequest;
+use App\Http\Requests\UpdateOffresRequest;
 use App\Offre;
 use App\Demande;
 use App\User;
@@ -44,27 +45,32 @@ class OffreController extends Controller
 
         session()->flash('success', 'Votre offre a bien ete enregistree.');
 
-        return redirect('/')->with('offres', Offre::all());
+        return redirect('/immob')->with('offres', Offre::all());
     }
 
-    public function sendmail(Offre $offre_c)
+    public function edit(Offre $offre)
     {
-        Mail::to($offre_c->user->email)->send(new SendMail());
-
-        session()->flash('success', 'Votre mail a bien ete envoye.');
-
-        return redirect('/');
+        return view('offre.index', ['offre'=>$offre]);
     }
 
-    public function compatibles(Offre $offre_c)
+    public function update(UpdateOffresRequest $request, Offre $offre)
     {
-        $offre_c = $offre_c;
+        $data = $request->only(['type', 'adresse', 'surface', 'price',]);
 
+        $offre->update($data);
+
+        session()->flash('success', 'Votre offre a bien ete modifiee.');
+
+        return redirect('/immob');
+    }
+
+    public function info(Offre $offre)
+    {
         $time = Carbon::now()->add('-1', 'day')->toDateTimeString();
 
         $offre_click = OffreClick::where([
             'user_id'=> Auth::user()->id, 
-            'offre_id'=>$offre_c->id,
+            'offre_id'=>$offre->id,
         ])->whereDate('created_at', '>', $time)->first();
 
         if(isset($offre_click)){
@@ -72,14 +78,34 @@ class OffreController extends Controller
         }else{
             OffreClick::create([
                     'user_id'=> Auth::user()->id, 
-                    'offre_id'=>$offre_c->id,
+                    'offre_id'=>$offre->id,
                     'count'=> 1,
                 ]);
         };
 
-      
-        return view('offre.compatibles', ['offre_c'=> $offre_c])->with('offreclicks', OffreClick::all());
+        return view('offre.info', ['offre'=>$offre]);
     }
 
-   
+    public function show(Offre $offre)
+    {
+        $offre = $offre ;
+
+        $demande_c[] = Demande::where('type', $offre->type)
+        ->where('adresse', $offre->adresse)
+        ->whereRaw('? BETWEEN surface_min AND surface_max', [$offre->surface])
+        ->whereRaw('? BETWEEN price_min AND price_max', [$offre->price])
+        ->get()->all();
+
+        return view('immob',['demande_cs'=>$demande_c[0], 'offre'=>$offre]);
+    }
+
+    public function sendmail(Offre $offre)
+    {
+        Mail::to($offre->user->email)->send(new SendMail());
+
+        session()->flash('success', 'Votre mail a bien ete envoye.');
+
+        return redirect('/immob');
+    }
+
 }

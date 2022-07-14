@@ -4,8 +4,8 @@
 <div class="my-2 container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-            <div class="card card-header">
+          
+         <div class="card-header text-warning">
                 <h3>{{isset($demande)? 'Modifie ta demande' : 'Cree ta demande' }}</h3>
             </div>
 
@@ -20,7 +20,8 @@
                 </ul>
                 </div>
             @endif
-            
+          
+            <div class="card my-3 shadow border-0">
             <div class="card-body">
                 <form action="{{isset($demande)? route('demande.update', $demande->id) : route('demande.store')}}" method="POST">
                     @csrf 
@@ -66,8 +67,8 @@
                         </div>
                 </div>
                 
-                    <div class="form-group mt-2">
-                        <button type="submit" class="btn btn-primary">{{isset($demande)? 'Modifier' : 'Creer' }}</button>
+                    <div class="mt-4 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-warning text-white">{{isset($demande)? 'Modifier' : 'Creer' }}</button>
                     </div>
                 </form>
             </div>
