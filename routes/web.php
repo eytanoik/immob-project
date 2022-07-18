@@ -31,6 +31,8 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/info/{offre}', 'OffreController@info')->name('info');
 
+    Route::get('/ofdem/{demande_c}/offre/{offre}', 'OffreController@ofdem')->name('ofdem');
+
 });
 
 

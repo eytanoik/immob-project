@@ -64,7 +64,7 @@
     </card-body>   
 
     <div class="d-flex justify-content-end mb-1">
-        <a href="" class="btn btn-sm btn-warning text-white m-1">Accepter la demande</a>
+        <a href="{{route('ofdem',['demande'=>$demande_c->id,'offre'=>$offre->id])}}" class="btn btn-sm btn-warning text-white m-1">Conclure l'affaire</a>
     </div>
 
 </div>

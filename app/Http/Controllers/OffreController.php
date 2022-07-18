@@ -9,6 +9,7 @@ use App\Offre;
 use App\Demande;
 use App\User;
 use App\OffreClick;
+use App\OffreDemande;
 use Illuminate\Support\Facades\Storage;
 use Auth;
 use Illuminate\Support\Facades\Mail;
@@ -105,6 +106,24 @@ class OffreController extends Controller
 
         session()->flash('success', 'Votre mail a bien ete envoye.');
 
+        return redirect('/immob');
+    }
+
+    public function ofdem(Demande $demande_c, Offre $offre)
+    {
+        OffreDemande::create([
+            'offre_id'=>$offre->id,
+            'demande_id'=> $demande_c->id,
+            'user_id'=> Auth::user()->id, 
+        ]);
+
+        $offre_delete = Offre::find($offre->id);
+        $offre_delete->delete();
+
+        $demande_delete = Demande::find($demande_c->id);
+        $demande_delete->delete();
+
+        // session()->flash('success', 'Bravo {{Auth::user()->name}}, affaire conclue! Loffre et la demande napparaissent plus sur le site.');
         return redirect('/immob');
     }
 

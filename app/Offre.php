@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Offre extends Model
 {
+    use SoftDeletes;
+
     protected $guarded = [];
 
     public function user()
@@ -17,4 +20,10 @@ class Offre extends Model
     {
         return $this->hasMany(OffreClick::class);
     }
+
+    public function demandes()
+    {
+        return $this->belongsToMany(Demande::class);
+    }
+
 }

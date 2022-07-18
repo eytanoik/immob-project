@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class CreateDemandes extends Migration
 {
     /**
@@ -22,7 +23,8 @@ class CreateDemandes extends Migration
             $table->float('price_min');
             $table->float('price_max');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');        
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();        
             $table->timestamps();
         });
     }

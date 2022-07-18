@@ -19,7 +19,7 @@
             </div>
                 
             <div class="col-md-5">
-            @component('component.demandes', ['demande_cs' => $demande_cs])
+            @component('component.demandes', ['demande_cs' => $demande_cs, 'offre'=> $offre])
             @endcomponent
             </div>
         @else
